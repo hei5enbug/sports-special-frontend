@@ -1,0 +1,9 @@
+.table {
+    font-size: 10px;
+    max-width: fit-content;
+}
+
+th,
+.gameDate {
+    text-align: center;
+}
