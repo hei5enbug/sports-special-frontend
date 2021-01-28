@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import DynamicTable from './DynamicTable';
+import TeamContext from './TeamContext';
 import headers from '../header/special_data.json';
 
 function SpecialDataTable({ apiURL }) {
@@ -15,6 +16,10 @@ function SpecialDataTable({ apiURL }) {
         firstThreePoint: '',
         firstFreeThrow: '',
     };
+
+    const { teamName } = useContext(TeamContext);
+    const url = 'http://localhost:3000/special/nba/' + teamName;
+    console.log(url);
 
     useEffect(() => {
         const fetchspecialData = async () => {

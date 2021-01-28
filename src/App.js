@@ -3,6 +3,7 @@ import SpecialDataTab from './components/SpecialDataTab';
 
 
 function App() {
+
     return (
         <SpecialDataTab />
     );

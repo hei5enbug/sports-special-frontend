@@ -19,7 +19,7 @@ function TeamSelectBar() {
 
     return (
         <>
-            <div className="btn-group">
+            <div className="btn-group mr-2">
                 <button onClick={onEastern} type="button" className="btn btn-outline-secondary btn-sm">
                     Eastern Conference
                 </button>
