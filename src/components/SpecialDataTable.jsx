@@ -23,7 +23,7 @@ function SpecialDataTable({ teamName }) {
                 setError(null);
                 setSpecialData(null);
                 setLoading(true);
-                const url = '/special/nba/'+ teamName;
+                const url = 'http://3.35.80.196:8080/special/nba/' + teamName;
                 const response = await axios.get(url);
                 setSpecialData(response.data);
             } catch (e) {
