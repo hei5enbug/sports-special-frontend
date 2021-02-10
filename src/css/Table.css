@@ -1,6 +1,10 @@
 .table {
-    font-size: 10px;
+    font-size: 1px;
     max-width: fit-content;
+}
+
+.table td {
+    border: 1px solid #808080;
 }
 
 th,

@@ -1,14 +1,12 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import TeamContext from './TeamContext';
 
 function TeamSelectBar(props) {
     const { init, options } = props;
-    const [selected, setSelected] = useState('');
     const { onChange } = useContext(TeamContext);
 
     const handleChange = (e) => {
-        setSelected(e.target.value);
-        onChange('http://localhost:3000/special/nba/' + e.target.value);
+        onChange(e.target.value);
         // console.log('onChange : ' + onChange);
     };
 

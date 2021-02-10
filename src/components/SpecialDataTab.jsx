@@ -5,7 +5,7 @@ import TeamContext from './TeamContext';
 import '../css/TabView.css';
 
 function SpecialDataTab() {
-    const [teamName, setTeamName] = useState('http://localhost:3000/special/nba');
+    const [teamName, setTeamName] = useState('');
 
     return (
         <>
@@ -16,7 +16,7 @@ function SpecialDataTab() {
                     </div>
                     <br />
                     <div id="MainTable">
-                        <SpecialDataTable apiURL={teamName} />
+                        <SpecialDataTable teamName={teamName} />
                     </div>
                 </div>
             </TeamContext.Provider>
