@@ -1,16 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import '../css/Table.css';
-import TeamContext from './TeamContext';
 
 const Table = (props) => {
-    const { headers, keys, rows } = props;
-    const { teamName } = useContext(TeamContext);
+    const {
+        customRow, headers, keys, rows } = props;
 
     return (
         <div>
             <table className="table table-sm table-bordered ">
                 <TableHeader headers={headers}></TableHeader>
-                <TableBody teamName={teamName} keys={keys} rows={rows}></TableBody>
+                <TableBody customRow={customRow} keys={keys} rows={rows} />
             </table>
         </div>
     );
@@ -35,28 +34,28 @@ const TableHeader = (props) => {
 };
 
 const TableBody = (props) => {
-    const { teamName, keys, rows } = props;
+    const { customRow, keys, rows } = props;
 
-    function buildRow(teamName, row, keys) {
+    const buildRow = (row, keys) => {
         return (
             <tr key={row.id}>
                 {keys.map((value, index) => {
-                    let selectStyle = teamName !== '' && row[value].includes(teamName) ? { background: '#56C3F966' } : null;
                     return (
-                        <td style={selectStyle} className={value} key={index}>
+                        <td className={value} key={index}>
                             {row[value]}
                         </td>
                     );
                 })}
             </tr>
         );
-    }
+    };
 
     return (
         <tbody>
             {rows &&
                 rows.map((value) => {
-                    return buildRow(teamName, value, keys);
+                    if (customRow) return customRow(value, keys);
+                    return buildRow(value, keys);
                 })}
         </tbody>
     );
