@@ -1,24 +1,20 @@
+// action
+const CHANGE_TEAM = 'TeamName/CHAGNE_TEAM';
+export const changeTeam = (teamName) => ({ type: CHANGE_TEAM, teamName });
+
 // state
 const initState = {
-    teamName: '',
+    teamName: ''
 };
 
-// action
-const CHAGNE_TEAM = 'CHAGNE_TEAM';
-
-const changeTeam = (teamName) => ({
-    type: CHAGNE_TEAM,
-    teamName,
-});
-
 // reducer
-function reducer(state = initState, action) {
+export default function TeamName(state = initState, action) {
     // state 의 초깃값을 initialState 로 지정했습니다.
     switch (action.type) {
-        case CHAGNE_TEAM:
+        case CHANGE_TEAM:
             return {
                 ...state,
-                teamName: action.teamName,
+                teamName: action.teamName
             };
         default:
             return state;

@@ -1,9 +1,7 @@
-import React from 'react';
 import '../css/Table.css';
 
 const Table = (props) => {
-    const {
-        customRow, headers, keys, rows } = props;
+    const { customRow, headers, keys, rows } = props;
 
     return (
         <div>

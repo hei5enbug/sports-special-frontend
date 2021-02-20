@@ -8,11 +8,11 @@ function SpecialDataTable({ teamName }) {
     const [error, setError] = useState(null);
 
     const headers = {
-        Date: '',
+        'Date': '',
         'Home Team': '',
         'Away Team': '',
         '3-Point Shot': '',
-        'Free Throw Shot': '',
+        'Free Throw Shot': ''
     };
 
     const keys = {
@@ -20,26 +20,7 @@ function SpecialDataTable({ teamName }) {
         homeTeam: '',
         awayTeam: '',
         firstThreePoint: '',
-        firstFreeThrow: '',
-    };
-
-    // function customRow(row, keys) {
-    const customRow = (row, keys) => {
-        return (
-            <tr key={row.id}>
-                {keys.map((value, index) => {
-                    const selectStyle =
-                        teamName !== '' && row[value].includes(teamName) ? { background: '#56C3F966' } : null;
-                    const cell = value.includes('first') ? row[value].split('(')[1].slice(0, -1) : row[value];
-
-                    return (
-                        <td style={selectStyle} className={value} key={index}>
-                            {cell}
-                        </td>
-                    );
-                })}
-            </tr>
-        );
+        firstFreeThrow: ''
     };
 
     useEffect(() => {
@@ -63,6 +44,25 @@ function SpecialDataTable({ teamName }) {
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다{specialData}</div>;
     if (!specialData) return null;
+
+    // function customRow(row, keys) {
+    const customRow = (row, keys) => {
+        return (
+            <tr key={row.id}>
+                {keys.map((value, index) => {
+                    const selectStyle =
+                        teamName !== '' && row[value].includes(teamName) ? { background: '#56C3F966' } : null;
+                    const cell = value.includes('first') ? row[value].split('(')[1].slice(0, -1) : row[value];
+
+                    return (
+                        <td style={selectStyle} className={value} key={index}>
+                            {cell}
+                        </td>
+                    );
+                })}
+            </tr>
+        );
+    };
 
     return (
         <DynamicTable

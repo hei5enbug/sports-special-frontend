@@ -2,16 +2,15 @@ import { useContext } from 'react';
 import TeamContext from './TeamContext';
 
 function TeamSelectBar(props) {
-    const { init, options } = props;
-    const { onChange } = useContext(TeamContext);
+    const { init, options, onChange } = props;
+    // const { onChange } = useContext(TeamContext);
 
     const handleChange = (e) => {
         onChange(e.target.value);
-        // console.log('onChange : ' + onChange);
     };
 
     TeamSelectBar.defaultProps = {
-        init: '',
+        init: ''
     };
 
     return (

@@ -3,7 +3,7 @@ import DynamicSelect from './DynamicSelect';
 import eastern from '../header/eastern_conference.json';
 import western from '../header/western_conference.json';
 
-function TeamSelectBar() {
+function TeamSelectBar({ teamName, onChangeTeam }) {
     const [selected, setSelected] = useState(eastern);
     const [init, setInit] = useState('Eastern Conference', 'Western Conference');
 
@@ -27,7 +27,11 @@ function TeamSelectBar() {
                     Western Conference
                 </button>
             </div>
-            <DynamicSelect init={init} options={Object.keys(selected)}></DynamicSelect>
+            <DynamicSelect
+                init={init}
+                options={Object.keys(selected)}
+                onChange={onChangeTeam}
+            ></DynamicSelect>
         </>
     );
 }
