@@ -1,0 +1,36 @@
+{
+    "eastern_conference": [
+        "Charlotte Hornets",
+        "Philadelphia 76ers",
+        "Washington Wizards",
+        "Chicago Bulls",
+        "Cleveland Cavaliers",
+        "Milwaukee Bucks",
+        "Miami Heat",
+        "Brooklyn Nets",
+        "Indiana Pacers",
+        "Atlanta Hawks",
+        "Toronto Raptors",
+        "Boston Celtics",
+        "New York Knicks",
+        "Detroit Pistons",
+        "Orlando Magic"
+    ],
+    "western_conference": [
+        "Sacramento Kings",
+        "New Orleans Pelicans",
+        "Golden State Warriors",
+        "Oklahoma City Thunder",
+        "Los Angeles Lakers",
+        "Houston Rockets",
+        "Dallas Mavericks",
+        "Memphis Grizzlies",
+        "Utah Jazz",
+        "Denver Nuggets",
+        "San Antonio Spurs",
+        "Minnesota Timberwolves",
+        "Portland Trail Blazers",
+        "Los Angeles Clippers",
+        "Phoenix Suns"
+    ]
+}

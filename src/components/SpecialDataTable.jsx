@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DynamicTable from './DynamicTable';
+import WinRate from './WinRate';
 
 function SpecialDataTable({ teamName }) {
     const [specialData, setSpecialData] = useState(null);
@@ -16,11 +17,11 @@ function SpecialDataTable({ teamName }) {
     };
 
     const keys = {
-        gameDate: '',
-        homeTeam: '',
-        awayTeam: '',
-        firstThreePoint: '',
-        firstFreeThrow: ''
+        'gameDate': '',
+        'homeTeam': '',
+        'awayTeam': '',
+        'firstThreePoint': '',
+        'firstFreeThrow': ''
     };
 
     useEffect(() => {
@@ -41,11 +42,11 @@ function SpecialDataTable({ teamName }) {
         fetchSpecialData();
     }, [teamName]);
 
-    if (loading) return <div>로딩중..</div>;
+    if (loading) return <div>Loading..</div>;
     if (error) return <div>에러가 발생했습니다{specialData}</div>;
     if (!specialData) return null;
 
-    // function customRow(row, keys) {
+    // customize string format, style in DynamicTable
     const customRow = (row, keys) => {
         return (
             <tr key={row.id}>
@@ -65,12 +66,15 @@ function SpecialDataTable({ teamName }) {
     };
 
     return (
-        <DynamicTable
-            customRow={customRow}
-            headers={Object.keys(headers)}
-            keys={Object.keys(keys)}
-            rows={specialData}
-        />
+        <>
+            <WinRate specialData={specialData} teamName={teamName} />
+            <DynamicTable
+                customRow={customRow}
+                headers={Object.keys(headers)}
+                keys={Object.keys(keys)}
+                rows={specialData}
+            />
+        </>
     );
 }
 
