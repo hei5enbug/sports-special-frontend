@@ -21,10 +21,10 @@ function TeamSelectBar({ teamName, onChangeTeam }) {
         <>
             <div className="btn-group mr-2">
                 <button onClick={onEastern} type="button" className="btn btn-outline-secondary btn-sm">
-                    Eastern Conference
+                    Eastern
                 </button>
                 <button onClick={onWestern} type="button" className="btn btn-outline-secondary btn-sm">
-                    Western Conference
+                    Western
                 </button>
             </div>
             <DynamicSelect

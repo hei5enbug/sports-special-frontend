@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DynamicTable from './DynamicTable';
 import WinRate from './WinRate';
+import Grid from '@material-ui/core/Grid';
 
 function SpecialDataTable({ teamName }) {
     const [specialData, setSpecialData] = useState(null);
@@ -12,8 +13,8 @@ function SpecialDataTable({ teamName }) {
         'Date': '',
         'Home Team': '',
         'Away Team': '',
-        '3-Point Shot': '',
-        'Free Throw Shot': ''
+        '3-Point': '',
+        'Free Throw': ''
     };
 
     const keys = {
@@ -67,13 +68,19 @@ function SpecialDataTable({ teamName }) {
 
     return (
         <>
-            <WinRate specialData={specialData} teamName={teamName} />
-            <DynamicTable
-                customRow={customRow}
-                headers={Object.keys(headers)}
-                keys={Object.keys(keys)}
-                rows={specialData}
-            />
+            <Grid container spacing={2}>
+                <Grid item>
+                    <DynamicTable
+                        customRow={customRow}
+                        headers={Object.keys(headers)}
+                        keys={Object.keys(keys)}
+                        rows={specialData}
+                    />
+                </Grid>
+                <Grid item>
+                    <WinRate specialData={specialData} teamName={teamName} />
+                </Grid>
+            </Grid>
         </>
     );
 }
