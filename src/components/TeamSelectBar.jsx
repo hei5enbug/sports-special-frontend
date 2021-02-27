@@ -1,35 +1,38 @@
 import { useState } from 'react';
 import DynamicSelect from './DynamicSelect';
-import eastern from '../header/eastern_conference.json';
-import western from '../header/western_conference.json';
+import selectoption from '../header/selectoption.json';
 
-function TeamSelectBar({ teamName, onChangeTeam }) {
-    const [selected, setSelected] = useState(eastern);
-    const [init, setInit] = useState('Eastern Conference', 'Western Conference');
+function TeamSelectBar({ onChangeTeam, league }) {
+    const [selected, setSelected] = useState(
+        league === 'wkbl' ? selectoption.wkbl : selectoption.eastern_conference
+    );
+    const [init, setInit] = useState('Team Select');
 
     const onEastern = () => {
-        setSelected(eastern);
+        setSelected(selectoption.eastern_conference);
         setInit('Eastern Conference');
     };
 
     const onWestern = () => {
-        setSelected(western);
+        setSelected(selectoption.western_conference);
         setInit('Western Conference');
     };
 
     return (
         <>
-            <div className="btn-group mr-2">
-                <button onClick={onEastern} type="button" className="btn btn-outline-secondary btn-sm">
-                    Eastern
-                </button>
-                <button onClick={onWestern} type="button" className="btn btn-outline-secondary btn-sm">
-                    Western
-                </button>
-            </div>
+            {league === 'nba' ? (
+                <div className="btn-group mr-2">
+                    <button onClick={onEastern} type="button" className="btn btn-outline-secondary btn-sm">
+                        Eastern
+                    </button>
+                    <button onClick={onWestern} type="button" className="btn btn-outline-secondary btn-sm">
+                        Western
+                    </button>
+                </div>
+            ) : null}
             <DynamicSelect
                 init={init}
-                options={Object.keys(selected)}
+                options={Object.values(selected)}
                 onChange={onChangeTeam}
             ></DynamicSelect>
         </>

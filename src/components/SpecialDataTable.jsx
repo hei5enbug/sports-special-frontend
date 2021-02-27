@@ -4,7 +4,7 @@ import DynamicTable from './DynamicTable';
 import WinRate from './WinRate';
 import Grid from '@material-ui/core/Grid';
 
-function SpecialDataTable({ teamName }) {
+function SpecialDataTable({ teamName, league }) {
     const [specialData, setSpecialData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -31,7 +31,7 @@ function SpecialDataTable({ teamName }) {
                 setError(null);
                 setSpecialData(null);
                 setLoading(true);
-                const url = `http://3.35.80.196:8080/special/nba/${teamName}`;
+                const url = `http://3.35.80.196:8080/special/${league}/${teamName}`;
                 const response = await axios.get(url);
                 setSpecialData(response.data);
             } catch (e) {
@@ -41,7 +41,7 @@ function SpecialDataTable({ teamName }) {
         };
 
         fetchSpecialData();
-    }, [teamName]);
+    }, [teamName, league]);
 
     if (loading) return <div>Loading..</div>;
     if (error) return <div>에러가 발생했습니다{specialData}</div>;

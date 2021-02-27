@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setFirstTeam, setSecondTeam } from '../store/teamname';
 import Grid from '@material-ui/core/Grid';
 
-function SpecialDataTab() {
+function SpecialDataTab({ league }) {
     const { firstTeam, secondTeam } = useSelector((state) => ({
         firstTeam: state.teamname.firstTeam,
         secondTeam: state.teamname.secondTeam
@@ -21,16 +21,24 @@ function SpecialDataTab() {
                 <Grid container justify="center">
                     <Grid container spacing={1} direction="column" alignContent="stretch" wrap="nowrap">
                         <Grid item>
-                            <TeamSelectBar teamName={firstTeam} onChangeTeam={onSetFirstTeam} />
+                            <TeamSelectBar
+                                teamName={firstTeam}
+                                onChangeTeam={onSetFirstTeam}
+                                league={league}
+                            />
                         </Grid>
                         <Grid item>
-                            <SpecialDataTable teamName={firstTeam} />
+                            <SpecialDataTable teamName={firstTeam} league={league} />
                         </Grid>
                         <Grid item>
-                            <TeamSelectBar teamName={secondTeam} onChangeTeam={onSetSecondTeam} />
+                            <TeamSelectBar
+                                teamName={secondTeam}
+                                onChangeTeam={onSetSecondTeam}
+                                league={league}
+                            />
                         </Grid>
                         <Grid item>
-                            <SpecialDataTable teamName={secondTeam} />
+                            <SpecialDataTable teamName={secondTeam} league={league} />
                         </Grid>
                     </Grid>
                 </Grid>
