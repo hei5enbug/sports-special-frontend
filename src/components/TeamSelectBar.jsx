@@ -3,10 +3,19 @@ import DynamicSelect from './DynamicSelect';
 import selectoption from '../header/selectoption.json';
 
 function TeamSelectBar({ onChangeTeam, league }) {
-    const [selected, setSelected] = useState(
-        league === 'wkbl' ? selectoption.wkbl : selectoption.eastern_conference
-    );
+    let option = selectoption.eastern_conference;
+    if (league === 'kbl') {
+        option = selectoption.kbl;
+    } else if (league === 'wkbl') {
+        option = selectoption.wkbl;
+    }
+
+    const [selected, setSelected] = useState(option);
     const [init, setInit] = useState('Team Select');
+
+    // if (league === 'kbl') {
+    //     setSelected(selectoption.kbl);
+    // }
 
     const onEastern = () => {
         setSelected(selectoption.eastern_conference);

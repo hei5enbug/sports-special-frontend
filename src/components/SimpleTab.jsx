@@ -46,7 +46,9 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        backgroundColor: theme.palette.background.paper
+        backgroundColor: theme.palette.background.paper,
+        padding: '10px',
+        margin: '30px'
     }
 }));
 
@@ -77,7 +79,7 @@ export default function SimpleTabs() {
                 <SpecialDataTab league="nba" />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Comming Soon..!
+                <SpecialDataTab league="kbl" />
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <SpecialDataTab league="wkbl" />
