@@ -1,11 +1,10 @@
 import './App.css';
-import SimpleTabs from './components/SimpleTab';
+import TopBar from './components/TopBar';
 
 function App() {
     return (
         <>
-            {/* <SpecialDataTab /> */}
-            <SimpleTabs />
+            <TopBar />
         </>
     );
 }

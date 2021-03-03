@@ -17,7 +17,7 @@ function SpecialDataTab({ league }) {
 
     return (
         <>
-            <div class="TabView">
+            <div className="TabView">
                 <Grid container justify="center">
                     <Grid container spacing={1} direction="column" alignContent="stretch" wrap="nowrap">
                         <Grid item>
