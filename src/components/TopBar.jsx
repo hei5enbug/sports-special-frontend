@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 import SpecialDataTab from './SpecialDataTab';
 import { useDispatch } from 'react-redux';
 import { setFirstTeam, setSecondTeam } from '../store/teamname';
+import TodayGameTable from './TodayGameTable';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -65,6 +66,7 @@ export default function TopBar() {
                     <Tab label="NBA" {...a11yProps(0)} />
                     <Tab label="KBL" {...a11yProps(1)} />
                     <Tab label="WKBL" {...a11yProps(2)} />
+                    <Tab label="Today" {...a11yProps(3)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
@@ -75,6 +77,9 @@ export default function TopBar() {
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <SpecialDataTab league="wkbl" />
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+                <TodayGameTable league="nba" />
             </TabPanel>
         </div>
     );
