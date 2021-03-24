@@ -1,14 +1,15 @@
 .table {
-    font-size: 6px;
-    max-width: fit-content;
+	font-size: 6px;
+	max-width: fit-content;
 }
 
 .table td {
-    border: 1px solid #808080;
-    padding: 4px;
+	border: 1px solid #808080;
+	padding: 4px;
+    vertical-align: middle;
 }
 
 th,
 .gameDate {
-    text-align: center;
+	text-align: center;
 }
