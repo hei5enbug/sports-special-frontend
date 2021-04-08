@@ -1,19 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DynamicTable from './DynamicTable';
 import Grid from '@material-ui/core/Grid';
-import SpecialDataTab from './SpecialDataTab';
 import { Button, makeStyles } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { setFirstTeam, setSecondTeam } from '../store/teamname';
+import { setFirstTeam, setSecondTeam } from '../store/specialSlice';
 import moment from 'moment-timezone';
 
-function TodayGameTable() {
+function TodayGameTable({ focusTable, league }) {
     const [specialData, setSpecialData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const focusTable = useRef();
     const dispatch = useDispatch();
     const onSetFirstTeam = (teamName) => dispatch(setFirstTeam(teamName));
     const onSetSecondTeam = (teamName) => dispatch(setSecondTeam(teamName));
@@ -49,7 +47,7 @@ function TodayGameTable() {
                 setError(null);
                 setSpecialData(null);
                 setLoading(true);
-                const url = `http://3.35.80.196:8080/special/nba/today`;
+                const url = `http://3.35.80.196:8080/special/${league}/today`;
                 const response = await axios.get(url);
                 setSpecialData(response.data);
             } catch (e) {
@@ -59,7 +57,7 @@ function TodayGameTable() {
         };
 
         fetchSpecialData();
-    }, []);
+    }, [league]);
 
     if (loading) return <div>Loading..</div>;
     if (error) return <div>에러가 발생했습니다{specialData}</div>;
@@ -69,29 +67,35 @@ function TodayGameTable() {
         onSetFirstTeam(homeTeam);
         onSetSecondTeam(awayTeam);
         window.scrollTo({
-            behavior: 'auto',
+            behavior: 'smooth',
             left: 0,
             top: focusTable.current.offsetTop
         });
     };
 
+    let tableData = specialData;
+    const convertKSTData = specialData.map((field) => {
+        moment.tz.setDefault('America/New_York');
+        let gameDate = moment(field.gameDate).tz('America/New_York');
+        gameDate.hour(field.gameTime.split(':')[0] * 1);
+        gameDate.minute(field.gameTime.split(':')[1] * 1);
+        gameDate = gameDate.tz('Asia/Seoul');
+
+        const copyField = {
+            ...field,
+            'gameDate': gameDate.format('MM-DD'),
+            'gameTime': gameDate.format('hh:mm')
+        };
+        return copyField;
+    });
+    if (league === 'nba') tableData = convertKSTData;
+
     // customize string format, style in DynamicTable
     const customRow = (row, keys) => {
-        moment.tz.setDefault('America/New_York');
-        let gameDate = moment(row['gameDate']).tz('America/New_York');
-        const gameHour =
-            row['gameTime'].slice(0, -2) === 'pm'
-                ? row['gameTime'].split(':')[0] * 1
-                : row['gameTime'].split(':')[0] * 1 + 12;
-
-        gameDate.hour(gameHour);
-        gameDate.minute(row['gameTime'].split(':')[1].slice(0, -2) * 1);
-        gameDate = gameDate.tz('Asia/Seoul');
+        moment.tz.setDefault('Asia/Seoul');
+        let gameDate = moment(row['gameDate']);
         const todayKST = moment().tz('Asia/Seoul');
         const selectStyle = todayKST.date() === gameDate.date() ? { background: '#56C3F966' } : null;
-
-        row['gameDate'] = gameDate.format('MM-DD');
-        row['gameTime'] = gameDate.format('hh:mm');
         const rowKey = row['gameDate'] + row['homeTeam'] + row['awayTeam'];
 
         return (
@@ -127,13 +131,8 @@ function TodayGameTable() {
                         customRow={customRow}
                         headers={Object.keys(headers)}
                         keys={Object.keys(keys)}
-                        rows={specialData}
+                        rows={tableData}
                     />
-                </Grid>
-                <Grid item>
-                    <div ref={focusTable}>
-                        <SpecialDataTab league="nba" />
-                    </div>
                 </Grid>
             </Grid>
         </>

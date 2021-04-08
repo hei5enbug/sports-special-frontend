@@ -8,8 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import SpecialDataTab from './SpecialDataTab';
 import { useDispatch } from 'react-redux';
-import { setFirstTeam, setSecondTeam } from '../store/teamname';
-import TodayGameTable from './TodayGameTable';
+import { setFirstTeam, setSecondTeam } from '../store/specialSlice';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -50,13 +49,11 @@ export default function TopBar() {
     const [value, setValue] = React.useState(0);
 
     const dispatch = useDispatch();
-    const onSetFirstTeam = (teamName) => dispatch(setFirstTeam(teamName));
-    const onSetSecondTeam = (teamName) => dispatch(setSecondTeam(teamName));
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        onSetFirstTeam('');
-        onSetSecondTeam('');
+        dispatch(setFirstTeam(''));
+        dispatch(setSecondTeam(''));
     };
 
     return (
@@ -66,7 +63,6 @@ export default function TopBar() {
                     <Tab label="NBA" {...a11yProps(0)} />
                     <Tab label="KBL" {...a11yProps(1)} />
                     <Tab label="WKBL" {...a11yProps(2)} />
-                    <Tab label="Today" {...a11yProps(3)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
@@ -77,9 +73,6 @@ export default function TopBar() {
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <SpecialDataTab league="wkbl" />
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                <TodayGameTable league="nba" />
             </TabPanel>
         </div>
     );

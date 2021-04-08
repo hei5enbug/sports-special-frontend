@@ -2,15 +2,18 @@ import SpecialDataTable from './SpecialDataTable';
 import TeamSelectBar from './TeamSelectBar';
 import '../css/TabView.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFirstTeam, setSecondTeam } from '../store/teamname';
+import { setFirstTeam, setSecondTeam } from '../store/specialSlice';
 import Grid from '@material-ui/core/Grid';
+import TodayGameTable from './TodayGameTable';
+import { useRef } from 'react';
 
 function SpecialDataTab({ league }) {
     const { firstTeam, secondTeam } = useSelector((state) => ({
-        firstTeam: state.teamname.firstTeam,
-        secondTeam: state.teamname.secondTeam
+        firstTeam: state.special.firstTeam,
+        secondTeam: state.special.secondTeam
     }));
 
+    const focusTable = useRef();
     const dispatch = useDispatch();
     const onSetFirstTeam = (teamName) => dispatch(setFirstTeam(teamName));
     const onSetSecondTeam = (teamName) => dispatch(setSecondTeam(teamName));
@@ -21,6 +24,9 @@ function SpecialDataTab({ league }) {
                 <Grid container justify="center">
                     <Grid container spacing={1} direction="column" alignContent="stretch" wrap="nowrap">
                         <Grid item>
+                            <TodayGameTable focusTable={focusTable} league={league} />
+                        </Grid>
+                        <Grid item ref={focusTable}>
                             <TeamSelectBar
                                 teamName={firstTeam}
                                 onChangeTeam={onSetFirstTeam}

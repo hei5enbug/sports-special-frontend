@@ -1,29 +1,30 @@
 import { useState } from 'react';
+import { EASTERN_CONFERENCE, KBL_TEAMS, WESTERN_CONFERENCE, WKBL_TEAMS } from '../common/Constants';
 import DynamicSelect from './DynamicSelect';
-import selectoption from '../header/selectoption.json';
 
 function TeamSelectBar({ onChangeTeam, league }) {
-    let option = selectoption.eastern_conference;
+    const easternTeams = EASTERN_CONFERENCE.sort();
+    const westernTeams = WESTERN_CONFERENCE.sort();
+    const kblTeams = KBL_TEAMS.sort();
+    const wkblTeams = WKBL_TEAMS.sort();
+
+    let option = easternTeams;
     if (league === 'kbl') {
-        option = selectoption.kbl;
+        option = kblTeams;
     } else if (league === 'wkbl') {
-        option = selectoption.wkbl;
+        option = wkblTeams;
     }
 
     const [selected, setSelected] = useState(option);
     const [init, setInit] = useState('Team Select');
 
-    // if (league === 'kbl') {
-    //     setSelected(selectoption.kbl);
-    // }
-
     const onEastern = () => {
-        setSelected(selectoption.eastern_conference);
+        setSelected(easternTeams);
         setInit('Eastern Conference');
     };
 
     const onWestern = () => {
-        setSelected(selectoption.western_conference);
+        setSelected(westernTeams);
         setInit('Western Conference');
     };
 
