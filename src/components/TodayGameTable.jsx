@@ -73,29 +73,12 @@ function TodayGameTable({ focusTable, league }) {
         });
     };
 
-    let tableData = specialData;
-    const convertKSTData = specialData.map((field) => {
-        moment.tz.setDefault('America/New_York');
-        let gameDate = moment(field.gameDate).tz('America/New_York');
-        gameDate.hour(field.gameTime.split(':')[0] * 1);
-        gameDate.minute(field.gameTime.split(':')[1] * 1);
-        gameDate = gameDate.tz('Asia/Seoul');
-
-        const copyField = {
-            ...field,
-            'gameDate': gameDate.format('MM-DD'),
-            'gameTime': gameDate.format('hh:mm')
-        };
-        return copyField;
-    });
-    if (league === 'nba') tableData = convertKSTData;
-
     // customize string format, style in DynamicTable
     const customRow = (row, keys) => {
         moment.tz.setDefault('Asia/Seoul');
-        let gameDate = moment(row['gameDate']);
+        const gameDate = moment(row['gameDate']);
         const todayKST = moment().tz('Asia/Seoul');
-        const selectStyle = todayKST.date() === gameDate.date() ? { background: '#56C3F966' } : null;
+        const selectStyle = todayKST.date() === gameDate.date() ? { background: '#44BEC744' } : null;
         const rowKey = row['gameDate'] + row['homeTeam'] + row['awayTeam'];
 
         return (
@@ -131,7 +114,7 @@ function TodayGameTable({ focusTable, league }) {
                         customRow={customRow}
                         headers={Object.keys(headers)}
                         keys={Object.keys(keys)}
-                        rows={tableData}
+                        rows={specialData}
                     />
                 </Grid>
             </Grid>

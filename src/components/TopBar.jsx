@@ -40,15 +40,26 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        backgroundColor: theme.palette.background.paper
+        backgroundColor: 'theme.palette.background.paper'
+    },
+    tabLabel: {
+        // fontFamily: 'Arial',
+        fontSize: '14px',
+        fontWeight: 'bold'
+    },
+    tabRoot: {
+        color: '#99CCFF',
+        backgroundColor: '#333333'
+    },
+    tabIndicator: {
+        backgroundColor: '#99CCFF'
     }
 }));
 
 export default function TopBar() {
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
-
     const dispatch = useDispatch();
+    const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -58,11 +69,17 @@ export default function TopBar() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
-                <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="NBA" {...a11yProps(0)} />
-                    <Tab label="KBL" {...a11yProps(1)} />
-                    <Tab label="WKBL" {...a11yProps(2)} />
+            <AppBar position="static" color="default">
+                <Tabs
+                    classes={{ indicator: classes.tabIndicator }}
+                    className={classes.tabRoot}
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="top tabs"
+                >
+                    <Tab label={<span className={classes.tabLabel}>NBA</span>} {...a11yProps(0)} />
+                    <Tab label={<span className={classes.tabLabel}>KBL</span>} {...a11yProps(1)} />
+                    <Tab label={<span className={classes.tabLabel}>WKBL</span>} {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
