@@ -1,6 +1,14 @@
 import Grid from '@material-ui/core/Grid';
 
-function WinRate({ teamName, specialData }) {
+type WinRateProps = {
+    teamName: string;
+    specialData: Array<{
+        firstThreePoint: string;
+        firstFreeThrow: string;
+    }>;
+};
+
+function WinRate({ teamName, specialData }: WinRateProps) {
     let all3PWin = 0;
     let last3PWin = 0;
     let allFTWin = 0;
@@ -11,9 +19,9 @@ function WinRate({ teamName, specialData }) {
     const all3PList = specialData.map((value) => value['firstThreePoint']);
     const allFTList = specialData.map((value) => value['firstFreeThrow']);
     const last3PList =
-        all3PList.length >= 10 ? all3PList.slice(all3PList.length - 10, all3PList.length) : all3PList.length;
+        all3PList.length >= 10 ? all3PList.slice(all3PList.length - 10, all3PList.length) : all3PList;
     const lastFTList =
-        allFTList.length >= 10 ? allFTList.slice(allFTList.length - 10, allFTList.length) : allFTList.length;
+        allFTList.length >= 10 ? allFTList.slice(allFTList.length - 10, allFTList.length) : allFTList;
 
     all3PList.forEach((it) => {
         if (it.includes(teamName)) {

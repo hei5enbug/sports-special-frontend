@@ -1,49 +1,60 @@
 {
-    "name": "frontend",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@material-ui/core": "^4.11.3",
-        "@reduxjs/toolkit": "^1.5.1",
-        "@testing-library/jest-dom": "^5.11.9",
-        "@testing-library/react": "^11.2.3",
-        "@testing-library/user-event": "^12.6.0",
-        "axios": "^0.21.1",
-        "mime": "^1.6.0",
-        "moment": "^2.29.1",
-        "moment-timezone": "^0.5.33",
-        "react": "^17.0.1",
-        "react-bootstrap-table": "^4.3.1",
-        "react-dom": "^17.0.1",
-        "react-moment": "^1.1.1",
-        "react-redux": "^7.2.2",
-        "react-scripts": "4.0.1",
-        "react-table": "^7.6.3",
-        "redux": "^4.0.5",
-        "web-vitals": "^0.2.4"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "GENERATE_SOURCEMAP=false npx react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^6.1.1",
+    "@material-ui/core": "^4.11.3",
+    "@reduxjs/toolkit": "^1.5.1",
+    "@tailwindcss/postcss7-compat": "^2.1.0",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.0",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^14.14.41",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "@types/react-redux": "^7.1.16",
+    "autoprefixer": "^9",
+    "axios": "^0.21.1",
+    "material-ui-colors": "^1.0.0",
+    "mime": "^1.6.0",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "postcss": "^7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-moment": "^1.1.1",
+    "react-redux": "^7.2.2",
+    "react-scripts": "4.0.1",
+    "react-table": "^7.6.3",
+    "redux": "^4.0.5",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "typescript": "^4.2.4",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "GENERATE_SOURCEMAP=false craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
