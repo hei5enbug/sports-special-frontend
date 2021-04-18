@@ -1,14 +1,10 @@
 const colors = require('tailwindcss/colors');
-const materialColors = require('material-ui-colors');
 
 module.exports = {
-  purge: [],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    // extend: {
-    //   colors: { ...materialColors }
-    // },
     screens: {
       sm: '640px',
       md: '768px',
